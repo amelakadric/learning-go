@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/amelakadric/learning-go/greeting"
+	"github.com/amelakadric/learning-go/01-basics/greeting"
 )
 
 
