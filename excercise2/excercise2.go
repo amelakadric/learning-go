@@ -4,7 +4,8 @@ import "fmt"
 
 func main() {
 
-	var pi float32 = 3.14
+	//the value of const has to be known before compilation
+	const pi = 3.14
 	radius := 5
 
 	circumference := 2 * pi * float32(radius)
