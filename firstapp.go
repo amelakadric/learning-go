@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/amelakadric/learning-go/greeting"
+)
+
 
 func main() {
 	// var greetingText string
@@ -8,14 +13,14 @@ func main() {
 
 	// var greetingText string = "Hello world!"
 
-	greetingText := "Hello world"
+	
 
 	luckyNumber:= 17
 
 	evenMoreLuckyNumber:= luckyNumber+5
 
-	fmt.Println(greetingText)
-	fmt.Println(greetingText)
+	fmt.Println(greeting.GreetingText)
+	fmt.Println(greeting.GreetingText)
 
 	fmt.Println(luckyNumber)
 	fmt.Println(evenMoreLuckyNumber)
