@@ -17,6 +17,20 @@ type Product struct {
 	price       float64
 }
 
+func (product *Product) store() {
+	file, _ := os.Create(product.id + ".txt")
+	content := fmt.Sprintf("Name: %v,\n id: %v,\n Description: %v, \n Price: %.2f$\n\n",
+		product.name,
+		product.id,
+		product.description,
+		product.price,
+	)
+
+	file.WriteString(content)
+
+	file.Close()
+}
+
 func (product *Product) outputData() {
 	fmt.Printf("Name: %v,\n id: %v,\n Description: %v, \n Price: %.2f$\n\n", product.name, product.id, product.description, product.price)
 }
@@ -28,27 +42,28 @@ func NewProduct(id string, name string, desc string, price float64) *Product {
 
 func main() {
 
-	product1 := Product{"123", "Alchemist", "Awesome book", 9.99}
+	// product1 := Product{"123", "Alchemist", "Awesome book", 9.99}
 
-	product2 := *NewProduct("456", "Juice", "Refreshing beverage", 2.49)
+	// product2 := *NewProduct("456", "Juice", "Refreshing beverage", 2.49)
 
 	product3 := *getProduct()
 
 	// fmt.Println(product1)
 	// fmt.Println(product2)
 
-	product1.outputData()
-	product2.outputData()
+	// product1.outputData()
+	// product2.outputData()
 	product3.outputData()
+	product3.store()
+
 }
 
 func getProduct() *Product {
-	var prod *Product
-	prod.id = readUserInput("Id of product: ")
-	prod.name = readUserInput("Name of product: ")
-	prod.description = readUserInput("Short description: ")
-	prod.price, _ = strconv.ParseFloat(readUserInput("Price of product: "), 64)
-	return prod
+	id := readUserInput("Id of product: ")
+	name := readUserInput("Name of product: ")
+	description := readUserInput("Short description: ")
+	price, _ := strconv.ParseFloat(readUserInput("Price of product: "), 64)
+	return &Product{id, name, description, price}
 }
 
 func readUserInput(promptText string) string {
