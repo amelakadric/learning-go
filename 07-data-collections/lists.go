@@ -23,12 +23,22 @@ func main() {
 
 	// featuredPrices := prices[1:3] //starts with element 1 excluding element 3
 
-	featuredPrices := prices[:3] //starts at the beginning
+	featuredPrices := prices[1:] //starts at the beginning
 	// featuredPrices := prices[1:]//ends on the end
 
+	featuredPrices[0] = 199.99
 	highlightedPrices := featuredPrices[:1]
 
 	fmt.Println(highlightedPrices)
+	fmt.Println(prices)
+	fmt.Println(len(highlightedPrices), cap(highlightedPrices))
+
+	highlightedPrices = highlightedPrices[:3]
+	fmt.Println(highlightedPrices)
+	fmt.Println(len(highlightedPrices), cap(highlightedPrices))
+
+	//editing slices is editing the array also
+	//beacuse its just like a window into an array
 
 	//https://www.youtube.com/watch?v=j7eEt_jk1V0
 	// F U
