@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Product struct {
 	title string
@@ -18,6 +20,15 @@ func main() {
 	fmt.Println(productNames)
 
 	fmt.Println(prices[3])
+
+	// featuredPrices := prices[1:3] //starts with element 1 excluding element 3
+
+	featuredPrices := prices[:3] //starts at the beginning
+	// featuredPrices := prices[1:]//ends on the end
+
+	highlightedPrices := featuredPrices[:1]
+
+	fmt.Println(highlightedPrices)
 
 	//https://www.youtube.com/watch?v=j7eEt_jk1V0
 	// F U
