@@ -84,7 +84,33 @@ func calculateFactorial() {
 
 }
 
-func calculateListSum() {}
+func calculateListSum() {
+	fmt.Println("Please enter a comma-separated list of numbers.")
+	inputNumberList, err := reader.ReadString('\n')
+
+	if err != nil {
+		fmt.Println("Invalid input")
+		return
+	}
+
+	inputNumberList = strings.Replace(inputNumberList, "\r\n", "", -1)
+	inputNumbers := strings.Split(inputNumberList, ",")
+
+	sum := 0
+
+	for index, value := range inputNumbers {
+		fmt.Printf("index: %v, Value: %v\n", index, value)
+		number, err := strconv.ParseInt(value, 0, 64)
+
+		if err != nil {
+			continue
+		}
+		sum += int(number)
+	}
+
+	fmt.Printf("Result: %v\n", sum)
+
+}
 
 func getInputNumber() (int, error) {
 	inputNumber, err := reader.ReadString('\n')
