@@ -9,14 +9,16 @@ import (
 )
 
 func main() {
-	reader := bufio.NewReader(os.Stdin)
 
-	fmt.Print("Please enter your age: ")
-	userAgeInput, _ := reader.ReadString('\n')
-	userAgeInput = strings.Replace(userAgeInput, "\r\n", "", -1)
-	userAge, _ := strconv.ParseInt(userAgeInput, 0, 64)
+	userAge, err := getUserAge()
+
+	// fmt.Println(err)
 
 	// isOldEnough := userAge >=18
+	if err != nil {
+		fmt.Println("Invalid input!")
+		return
+	}
 
 	if (userAge >= 30 && userAge < 50) || userAge >= 60 {
 		fmt.Println("You're eligible for our senior jobs")
@@ -29,4 +31,14 @@ func main() {
 	}
 
 	fmt.Println("Goodbye")
+}
+
+func getUserAge() (int, error) {
+	reader := bufio.NewReader(os.Stdin)
+
+	fmt.Print("Please enter your age: ")
+	userAgeInput, _ := reader.ReadString('\n')
+	userAgeInput = strings.Replace(userAgeInput, "\r\n", "", -1)
+	userAge, err := strconv.ParseInt(userAgeInput, 0, 64)
+	return int(userAge), err
 }
