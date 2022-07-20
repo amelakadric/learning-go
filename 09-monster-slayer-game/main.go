@@ -2,6 +2,8 @@ package main
 
 import "github.com/amelakadric/learning-go/09-monster-slayer-game/interaction"
 
+var currentRound = 0
+
 func main() {
 	winner := ""
 
@@ -20,6 +22,10 @@ func startGame() {
 }
 
 func executeRound() string {
+	currentRound++
+	isSpecialRound := (currentRound%3 == 0)
+
+	interaction.ShowAvailableActions(isSpecialRound)
 
 	return ""
 }
