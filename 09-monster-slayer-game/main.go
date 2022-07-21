@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/amelakadric/learning-go/09-monster-slayer-game/interaction"
 )
 
@@ -32,7 +30,11 @@ func executeRound() string {
 	interaction.ShowAvailableActions(isSpecialRound)
 	userChoice := interaction.GetPlayerChoice(isSpecialRound)
 
-	fmt.Println(userChoice)
+	switch userChoice {
+	case "ATTACK":
+	case "HEAL":
+	case "SPECIAL_ATTACK":
+	}
 
 	return ""
 }
