@@ -1,6 +1,10 @@
 package main
 
-import "github.com/amelakadric/learning-go/09-monster-slayer-game/interaction"
+import (
+	"fmt"
+
+	"github.com/amelakadric/learning-go/09-monster-slayer-game/interaction"
+)
 
 var currentRound = 0
 
@@ -26,6 +30,9 @@ func executeRound() string {
 	isSpecialRound := (currentRound%3 == 0)
 
 	interaction.ShowAvailableActions(isSpecialRound)
+	userChoice := interaction.GetPlayerChoice(isSpecialRound)
+
+	fmt.Println(userChoice)
 
 	return ""
 }
