@@ -1,36 +1,17 @@
 package main
 
-import "fmt"
+const userName = "Amela"
 
-type person struct {
-	name string
-	age  int
-}
+const age = 64 / 2 // allowed
+// const random = rand.Int() not allowed
 
-type customNumber int
-
-type personData map[string]person
-
-func (num customNumber) pow(power int) customNumber {
-	result := num
-	for i := 1; i < power; i++ {
-		result *= num
-	}
-
-	return result
-}
+const (
+	inputAttack        = iota + 1 //automatic 0, autoincrementing
+	inputSpecialAttack = iota + 10
+	inputHeal
+)
 
 func main() {
-
-	var people personData = personData{
-		"p1": {"Amela", 32},
-	}
-
-	fmt.Println(people)
-
-	var dummyNumber customNumber = 5
-	poweredNumber := dummyNumber.pow(3)
-
-	fmt.Println(poweredNumber)
+	// username = "Amela"
 
 }
