@@ -2,23 +2,19 @@ package main
 
 import "fmt"
 
-var userName = "Amela"
-
 func main() {
-	shouldContinue := true
-	userName := "Maximilian"
+	// new & make
 
-	if shouldContinue {
-		userAge := 32
+	// hobbies := []string{"Sports", "Reading"}
+	// composite literal making of a slice
 
-		fmt.Printf("Name: %v, Age: %v", userName, userAge)
-	}
+	hobbies := make([]string, 2, 10)
 
-	// fmt.Println(userAge) scope
+	hobbies[0] = "Sports"
+	hobbies[1] = "Reading"
 
-}
+	hobbies = append(hobbies, "Cooking", "Dancing")
 
-func prinData() {
-	fmt.Println(userName)
-	// fmt.Println(shouldContinue) doesnt work
+	fmt.Println(hobbies)
+
 }
