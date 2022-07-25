@@ -29,11 +29,11 @@ func getUserInput() string {
 }
 
 func storeData(data string) {
-	file, err := os.Create("data.txt")
+	file, err := os.Create("data/data.txt")
 
 	if err != nil {
 		fmt.Println("Creating the file failed!")
-		return
+		panic(err)
 	}
 
 	defer func() {
