@@ -20,6 +20,8 @@ func (lData *logData) log() {
 
 	if err != nil {
 		fmt.Println("Storing the log data failed!")
+		message := err.Error()
+		fmt.Println(message)
 	}
 }
 
@@ -38,12 +40,17 @@ func main() {
 	// do more work ...
 	message.log()
 
-	createLog(userLog)
-
 	createLog(message)
 
+	outputValue(message)
+	outputValue(userLog)
+	// reader := bufio.NewReader(os.Stdin)
 }
 
 func createLog(data logger) {
 	data.log()
+}
+
+func outputValue(value interface{}) {
+	fmt.Println(value)
 }
