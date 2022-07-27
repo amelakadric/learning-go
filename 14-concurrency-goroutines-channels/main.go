@@ -12,11 +12,12 @@ var randN = rand.New(source)
 func main() {
 
 	c := make(chan int)
+	limiter := make(chan int, 3)
 
-	go generateValue(c)
-	go generateValue(c)
-	go generateValue(c)
-	go generateValue(c)
+	go generateValue(c, limiter)
+	go generateValue(c, limiter)
+	go generateValue(c, limiter)
+	go generateValue(c, limiter)
 
 	sum := 0
 	i := 0
@@ -32,11 +33,19 @@ func main() {
 	fmt.Println(sum)
 }
 
-func generateValue(c chan int) int {
-	sleepTime := randN.Intn(3)
-	time.Sleep(time.Duration(sleepTime) * time.Second)
+func generateValue(c chan int, limit chan int) int {
+	limit <- 1
+	fmt.Println("Generating value...")
+	// sleepTime := randN.Intn(3)
+	time.Sleep(time.Duration(4) * time.Second)
 	result := randN.Intn(10)
 	c <- result
+	<-limit
+	//ali ako funkcija ne vraca nista
+	// i samo je goroutine ne crashuje
+	//iako ne zna koliko ce dugo da se
+	//vrti u onom gpre loopu, zanima me sto
+
 	// close(c)
 	return result
 }
