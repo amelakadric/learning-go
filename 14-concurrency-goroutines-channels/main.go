@@ -9,10 +9,15 @@ func main() {
 	greet()
 	storeData("This is some dummy data!", "dummy-data.txt")
 
-	go storeMoreData(5000, "50000_1.txt")
-	go storeMoreData(5000, "50000_2.txt")
+	channel1 := make(chan int)
+	channel2 := make(chan int)
 
-	fmt.Println("Complete")
+	go storeMoreData(5000, "50000_1.txt", channel1)
+	go storeMoreData(5000, "50000_2.txt", channel2)
+
+	<-channel1
+	<-channel2
+
 }
 
 func greet() {
@@ -39,11 +44,12 @@ func storeData(storableText string, fileName string) {
 	}
 }
 
-func storeMoreData(lines int, fileName string) {
+func storeMoreData(lines int, fileName string, c chan int) {
 	for i := 0; i < lines; i++ {
 		text := fmt.Sprintf("Line %v - Dummy Data\n", i)
 		storeData(text, fileName)
 	}
 
 	fmt.Printf("-- Done storing %v lines of text --\n", lines)
+	c <- 1
 }
