@@ -15,20 +15,30 @@ func main() {
 
 	go generateValue(c)
 	go generateValue(c)
+	go generateValue(c)
+	go generateValue(c)
 
-	x := <-c
-	y := <-c
+	sum := 0
+	i := 0
 
-	sum := x + y
+	for num := range c {
+		sum += num
+		i++
+		if i == 4 {
+			close(c)
+		}
+	}
 
 	fmt.Println(sum)
 }
 
-func generateValue(c chan int) {
+func generateValue(c chan int) int {
 	sleepTime := randN.Intn(3)
 	time.Sleep(time.Duration(sleepTime) * time.Second)
-
-	c <- randN.Intn(10)
+	result := randN.Intn(10)
+	c <- result
+	// close(c)
+	return result
 }
 
 // func main() {
