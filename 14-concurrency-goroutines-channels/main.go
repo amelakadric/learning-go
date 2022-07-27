@@ -9,14 +9,13 @@ func main() {
 	greet()
 	storeData("This is some dummy data!", "dummy-data.txt")
 
-	channel1 := make(chan int)
-	channel2 := make(chan int)
+	channel := make(chan int)
 
-	go storeMoreData(5000, "50000_1.txt", channel1)
-	go storeMoreData(5000, "50000_2.txt", channel2)
+	go storeMoreData(5000, "50000_1.txt", channel)
+	go storeMoreData(5000, "50000_2.txt", channel)
 
-	<-channel1
-	<-channel2
+	<-channel
+	<-channel
 
 }
 
